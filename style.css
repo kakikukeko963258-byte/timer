@@ -60,7 +60,7 @@ font-size: var(--font-size);
 
   text-align: center;
   user-select: none;
-
+transform: translateY(0.05em);
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
 }
@@ -99,6 +99,7 @@ body.finished {
 body.running {
   background: #000000;
 }
+
 
 
 
