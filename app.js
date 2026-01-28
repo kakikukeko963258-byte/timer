@@ -1,4 +1,4 @@
-let remaining = 300;
+let remaining = 3300;
 let running = false;
 let timerId = null;
 let uiTimer = null;
@@ -136,3 +136,4 @@ window.addEventListener("resize", fitText);
 
 setState("idle");
 render();
+
