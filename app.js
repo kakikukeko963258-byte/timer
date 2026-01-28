@@ -1,4 +1,4 @@
-let remaining = 3300;
+let remaining = 300;
 let running = false;
 let timerId = null;
 let uiTimer = null;
@@ -79,8 +79,8 @@ function fitText() {
 }
 
 function setState(state) {
-  document.body.classList.remove("idle", "running", "finished");
-  document.body.classList.add(state);
+  document.documentElement.className = state;
+  document.body.className = state;
 }
 
 
@@ -136,5 +136,6 @@ window.addEventListener("resize", fitText);
 
 setState("idle");
 render();
+
 
 
