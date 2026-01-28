@@ -1,0 +1,77 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  transition:
+    background 0.8s ease,
+    color 0.8s ease;
+}
+
+/* ===== 状態 ===== */
+
+/* 開始前・終了後 */
+@font-face {
+  font-family: "DefaultTimerFont";
+  src: url("2.ttf") format("truetype");
+  font-display: swap;
+}
+:root {
+  --timer-font: "DefaultTimerFont";
+}
+
+
+body.idle,
+body.finished {
+  background: linear-gradient(#ffffff, #ffffff);
+  color: #000;
+}
+
+/* 実行中 */
+body.running {
+  background: linear-gradient(135deg, #000000, #000000);
+  color: #fff;
+}
+
+/* ===== レイアウト ===== */
+
+#app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#time {
+  font-family: var(--timer-font), system-ui, sans-serif;
+  font-size: 40vw;
+  white-space: nowrap;
+  line-height: 1;
+  text-align: center;
+  user-select: none;
+
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+#ui {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  gap: 10px;
+  transition: opacity 0.3s;
+}
+
+#ui.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+button, input {
+  font-size: 16px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+}
