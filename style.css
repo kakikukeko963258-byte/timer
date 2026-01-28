@@ -45,16 +45,19 @@ body.running {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
+  place-items: center;
 }
 
 #time {
   font-family: var(--timer-font), system-ui, sans-serif;
-  font-size: 40vw;
-  white-space: nowrap;
+font-size: var(--font-size);
   line-height: 1;
+  display: block;
+  white-space: nowrap;
+
   text-align: center;
   user-select: none;
 
@@ -96,5 +99,6 @@ body.finished {
 body.running {
   background: #000000;
 }
+
 
 
