@@ -65,6 +65,18 @@ function toggleStartStop() {
   running ? stop() : start();
 }
 
+function animateSwitch(updateFn) {
+  timeEl.classList.add("switch-out");
+
+  setTimeout(() => {
+    updateFn();      // 表示内容を切り替える
+    fitText();
+
+    timeEl.classList.remove("switch-out");
+    timeEl.classList.add("switch-in");
+  }, 200);
+}
+
 /* -------------------- Clock -------------------- */
 
 function startClock() {
@@ -89,15 +101,17 @@ function startClock() {
 /* -------------------- Mode 切り替え -------------------- */
 
 function toggleMode() {
-  if (mode === "timer") {
-    mode = "clock";
-    modeBtn.textContent = "Timer";
-    startClock();
-  } else {
-    mode = "timer";
-    modeBtn.textContent = "Clock";
-    render();
-  }
+  animateSwitch(() => {
+    if (mode === "timer") {
+      mode = "clock";
+      modeBtn.textContent = "Timer";
+      startClock();
+    } else {
+      mode = "timer";
+      modeBtn.textContent = "Clock";
+      render();
+    }
+  });
 }
 
 modeBtn.onclick = toggleMode;

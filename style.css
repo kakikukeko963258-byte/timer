@@ -64,6 +64,22 @@ transform: translateY(0.05em);
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
 }
+#time {
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+#time.switch-out {
+  opacity: 0;
+  transform: translateY(0.2em);
+}
+
+#time.switch-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 #ui {
   position: absolute;
