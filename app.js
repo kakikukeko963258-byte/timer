@@ -137,3 +137,4 @@ window.addEventListener("resize", fitText);
 setState("idle");
 render();
 
+
