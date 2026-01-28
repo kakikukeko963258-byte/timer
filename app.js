@@ -2,90 +2,16 @@ let remaining = 300;
 let running = false;
 let timerId = null;
 let uiTimer = null;
-let mode = "timer"; // "timer" | "clock"
-
 
 const timeEl = document.getElementById("time");
 const uiEl = document.getElementById("ui");
-
-let clockInterval = null;
-
-function updateClockDisplay() {
-  clearInterval(clockInterval);
-
-  function tickTimer() {
-  if (!running) return;
-
-  remainingSeconds--;
-  if (remainingSeconds <= 0) {
-    remainingSeconds = 0;
-    running = false;
-    updateTheme();
-  }
-
-  if (mode === "timer") {
-    updateTimerDisplay();
-  }
-}
-  
-  function tick() {
-    if (mode !== "clock") return;
-
-    const now = new Date();
-    const h = String(now.getHours()).padStart(2, "0");
-    const m = String(now.getMinutes()).padStart(2, "0");
-    const s = String(now.getSeconds()).padStart(2, "0");
-    timerEl.textContent = `${h}:${m}:${s}`;
-  }
-
-  tick();
-  clockInterval = setInterval(tick, 1000);
-}
-function startClockDisplay() {
-  clearInterval(clockInterval);
-
-  function tick() {
-    if (mode !== "clock") return;
-
-    const now = new Date();
-    const h = String(now.getHours()).padStart(2, "0");
-    const m = String(now.getMinutes()).padStart(2, "0");
-    const s = String(now.getSeconds()).padStart(2, "0");
-    timerEl.textContent = `${h}:${m}:${s}`;
-  }
-
-  tick();
-  clockInterval = setInterval(tick, 1000);
-}
 
 function format(sec) {
   const m = String(Math.floor(sec / 60)).padStart(2, "0");
   const s = String(sec % 60).padStart(2, "0");
   return `${m}:${s}`;
 }
-function updateTheme() {
-  document.documentElement.classList.toggle("running", running);
-  document.body.classList.toggle("running", running);
 
-  document.documentElement.classList.toggle("idle", !running);
-  document.body.classList.toggle("idle", !running);
-}running);
-}
-function tickTimer() {
-  if (!running) return;
-
-  remainingSeconds--;
-
-  if (remainingSeconds <= 0) {
-    remainingSeconds = 0;
-    running = false;
-    onTimerFinished();
-  }
-
-  if (mode === "timer") {
-    updateTimerDisplay();
-  }
-}
 function render() {
   timeEl.textContent = format(remaining);
   fitText();
@@ -94,8 +20,7 @@ function render() {
 function start() {
   if (running) return;
   running = true;
-  
-  updateTheme()
+
   setState("running");
   hideUI();
 
@@ -113,9 +38,6 @@ function stop() {
   running = false;
   clearInterval(timerId);
   setState("idle");
-  
-  updateTheme();
-
 }
 
 function finish() {
@@ -157,8 +79,8 @@ function fitText() {
 }
 
 function setState(state) {
-  document.documentElement.className = state;
-  document.body.className = state;
+  document.body.classList.remove("idle", "running", "finished");
+  document.body.classList.add(state);
 }
 
 
@@ -178,66 +100,29 @@ document.getElementById("fontFile").addEventListener("change", async (e) => {
 
   fitText();
 });
-
 function toggleStartStop() {
-  running ? stop() : start();
+  if (running) {
+    stop();
+  } else {
+    start();
+  }
 }
 document.addEventListener("keydown", (e) => {
   // 入力中は無効（重要）
   if (e.target.tagName === "INPUT") return;
 
-document.addEventListener("keydown", (e) => {
-  if (e.code !== "Space") return;
-  e.preventDefault();
-  toggleStartStop();
+  if (e.code === "Space") {
+    e.preventDefault(); // スクロール防止
+    toggleStartStop();
+  }
 });
-controls.style.display = "flex";
+
 function reset() {
   remaining = 0;
   render();
   setState("idle");
 }
-function refreshDisplay() {
-  if (mode === "clock") {
-    updateClockDisplay();
-  } else {
-    updateTimerDisplay();
-  }
-}
 
-const timerEl = document.getElementById("timer");const timerEl = document.getElementById("timer");
-const modeBtn = document.getElementById("modeToggle");
-const controls = document.querySelector(".controls"); // UI一式
-
-modeBtn.addEventListener("click", toggleMode);
-
-function toggleMode() {
-  if (mode === "timer") {
-    switchToClock();
-  } else {
-    switchToTimer();
-  }
-}
-
-function switchToClock() {
-  mode = "clock";
-  modeBtn.textContent = "Timer";
-  refreshDisplay();
-}
-
-function switchToTimer() {
-  mode = "timer";
-  modeBtn.textContent = "Clock";
-  refreshDisplay();
-}
-
-function toggleMode() {
-  if (mode === "timer") {
-    switchToClock();
-  } else {
-    switchToTimer();
-  }
-}
 /* イベント */
 document.getElementById("start").onclick = start;
 document.getElementById("stop").onclick = stop;
@@ -251,7 +136,3 @@ window.addEventListener("resize", fitText);
 
 setState("idle");
 render();
-
-
-
-
