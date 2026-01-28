@@ -66,14 +66,12 @@ function toggleStartStop() {
 }
 
 function animateSwitch(updateFn) {
-  timeEl.classList.add("switch-out");
+  timeEl.classList.add("blur-out");
 
   setTimeout(() => {
-    updateFn();      // 表示内容を切り替える
+    updateFn();
     fitText();
-
-    timeEl.classList.remove("switch-out");
-    timeEl.classList.add("switch-in");
+    timeEl.classList.remove("blur-out");
   }, 200);
 }
 
