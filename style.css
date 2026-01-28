@@ -87,3 +87,12 @@ button, input {
   }
 }
 
+body.idle,
+body.finished {
+  background: #ffffff;
+}
+
+body.running {
+  background: #000000;
+}
+
