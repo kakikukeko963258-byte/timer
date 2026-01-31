@@ -18,7 +18,7 @@ body {
 /* 開始前・終了後 */
 @font-face {
   font-family: "DefaultTimerFont";
-  src: url("2.ttf") format("truetype");
+  src: url("1.ttf") format("truetype");
   font-display: swap;
 }
 :root {
@@ -65,16 +65,17 @@ transform: translateY(0.05em);
   font-feature-settings: "tnum";
 }
 #time {
-  transition:
-    opacity 0.25s ease,
-    filter 0.25s ease;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: 0.02em;
 }
 
-#time.blur-out {
-  opacity: 0;
-  filter: blur(8px);
+/* コロン・ピリオドだけ専用 */
+.time-sep {
+  display: inline-block;
+  width: 0.6em;          /* ← ここが重要 */
+  text-align: center;
 }
-
 
 
 #ui {
@@ -95,6 +96,21 @@ button, input {
   padding: 8px 14px;
   border-radius: 8px;
   border: none;
+  font-family: var(--timer-font), system-ui, sans-serif;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+/* ファイル選択ボタンのフォント */
+#fontFile::file-selector-button {
+  font-family: var(--timer-font), system-ui, sans-serif;
+  font-size: 16px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  line-height: 1.2;
+  vertical-align: middle;
 }
 
 @supports (height: 100svh) {
