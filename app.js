@@ -258,4 +258,4 @@ window.addEventListener("resize", fitText);
 ========================= */
 setState("idle");
 renderTimer();
-rafId = requestAnimationFrame(loop);
+rafId = requestAnimationFrame(loop); 
