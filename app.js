@@ -85,7 +85,7 @@ function renderClock() {
 ========================= */
 function loop(now) {
   // タイマーが running なら常に動作（背景でカウント）
-  if (running) {a
+  if (running) {
     const delta = now - lastTime;
     lastTime = now;
 
