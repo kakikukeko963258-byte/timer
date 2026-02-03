@@ -60,7 +60,7 @@ font-size: var(--font-size);
 
   text-align: center;
   user-select: none;
-transform: translateY(0.05em);
+transform: translateY(0.15em);
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
 }
@@ -112,11 +112,30 @@ button, input {
   white-space: nowrap;
 }
 
+/* スライダーのスタイル */
+input[type="range"] {
+  width: 100px;
+  height: 6px;
+  padding: 0;
+  cursor: pointer;
+}
+
+label {
+  display: inline-block;
+  font-size: 14px;
+  color: inherit;
+  user-select: none;
+}
+
 /* 小さい画面用 */
 @media (max-width: 600px) {
   button, input[type="file"] {
     font-size: 14px;
     padding: 6px 12px;
+  }
+  
+  input[type="range"] {
+    width: 80px;
   }
   
   #ui {
@@ -133,6 +152,10 @@ button, input {
   button, input[type="file"] {
     font-size: 12px;
     padding: 4px 10px;
+  }
+  
+  input[type="range"] {
+    width: 60px;
   }
   
   #ui {

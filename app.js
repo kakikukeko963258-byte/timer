@@ -250,6 +250,12 @@ document.getElementById("reset").onclick = reset;
 modeBtn.onclick = toggleMode;
 formatBtn.onclick = toggleFormat;
 
+/* スライダーで文字位置を調整 */
+document.getElementById("posSlider").addEventListener("input", (e) => {
+  const value = e.target.value;
+  timeEl.style.transform = `translateY(${value}em)`;
+});
+
 document.addEventListener("pointerdown", showUI);
 window.addEventListener("resize", fitText);
 
