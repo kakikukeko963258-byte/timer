@@ -4,7 +4,7 @@
 let mode = "timer"; // "timer" or "clock"
 let timeFormat = "decimal"; // "decimal" or "normal"
 
-let remainingMs = 300000; // タイマー初期値（5分）
+let remainingMs = 3000000; // タイマー初期値（5分）
 let running = false;
 
 let rafId = null;
@@ -131,13 +131,13 @@ function reset() {
 
 function addMinute() {
   if (mode !== "timer") return;
-  remainingMs += 60000;
+  remainingMs += 600000;
   renderTimer();
 }
 
 function addSecond() {
   if (mode !== "timer") return;
-  remainingMs += 1000;
+  remainingMs += 60000;
   renderTimer();
 }
 
